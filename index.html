@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Sidharth Gopakumar: computer science student at the University of Stirling, web developer, UI/UX designer and network engineer in training, based in Ras Al Khaimah, UAE.">
+<meta name="theme-color" content="#090d0b">
+<meta property="og:title" content="Sidharth Gopakumar">
+<meta property="og:description" content="Websites people remember, networks they never have to think about.">
+<meta property="og:image" content="assets/sidharth.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<title>Sidharth Gopakumar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/style.css?v=9">
+</head>
+<body>
+<canvas id="rain" aria-hidden="true"></canvas>
+<canvas id="net" aria-hidden="true"></canvas>
+<div id="boot" aria-hidden="true"><div id="bootLog"></div></div>
+<div id="hud" aria-hidden="true"><span>SEC <b id="hudSec">hero</b></span><span>SCROLL <b id="hudPct">000</b>%</span></div>
+
+<nav>
+  <div class="wrap">
+    <a class="mono-mark" href="#hero"><i>SG</i>Sidharth</a>
+    <div class="links"><a href="#about" data-scramble>About</a><a href="#work" data-scramble>Work</a><a href="#skills" data-scramble>Skills</a><a href="#journey" data-scramble>Journey</a></div>
+    <span class="eyebrow" id="clock">GST --:--:--</span>
+    <a class="btn" href="#contact" data-scramble>Get in touch</a>
+  </div>
+</nav>
+
+<main>
+  <section id="hero">
+    <div class="wrap">
+      <p class="eyebrow fade"><span class="dot"></span>SYS ONLINE · Ras Al Khaimah, UAE · Available for internships</p>
+      <h1 class="name" aria-label="Sidharth Gopakumar"><span class="ln one">Sidharth</span><span class="ln two">Gopakumar</span></h1>
+      <div class="hero-row">
+        <div><p class="roles fade">I build <b>websites</b> people remember and <b>networks</b> they never have to think about.</p><p class="typer fade" aria-label="Web developer, UI/UX designer, network engineer in training, team lead">&gt; <span id="typed">web_developer</span><span class="caret"></span></p></div>
+        <div class="status fade">
+          <p class="eyebrow">Web · UI/UX · Networking · Team lead</p>
+          <a class="btn ghost" href="#work">See my work</a>
+          <p class="hint" id="pingHint">click anywhere to send some bits</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="brk photo-wrap"><figure class="photo" style="margin:0">
+        <img class="mono" src="assets/sidharth.jpg" alt="Sidharth Gopakumar in a black T-shirt, checking his watch in warm evening light">
+        <img class="colr" src="assets/sidharth.jpg" alt="" aria-hidden="true">
+        <figcaption class="cap"><span>Sidharth Gopakumar</span><span>BSc CS · Yr 3</span></figcaption>
+      </figure></div>
+      <div class="about-copy">
+        <p class="eyebrow" data-fly="up">// about</p>
+        <p class="statement scrub">Computer science student at the University of Stirling. I build websites that feel alive, lead the teams that ship them, and I'm training to run the <em>networks underneath.</em></p>
+        <div class="facts" data-stagger>
+          <div class="fact"><span class="k">Studying</span><span class="v">BSc (Hons) Computer Science, Stirling RAK</span></div>
+          <div class="fact"><span class="k">Qualified</span><span class="v">SQA Advanced Diploma, Software Development</span></div>
+          <div class="fact"><span class="k">Working toward</span><span class="v">Cisco CCNA 200-301</span></div>
+          <div class="fact"><span class="k">Currently</span><span class="v">Leading a 5-person software team</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap work-head"><h2 data-scramble>Selected work</h2><p class="eyebrow">// 07 projects · scroll →</p></div>
+    <div class="track">
+      <article class="proj feature" style="--c:#d9b56b;--ink:#2a1d07">
+        <div class="cover">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M10 40 L60 12 L110 40 Z M16 44 H104 M24 50 V98 M42 50 V98 M60 50 V98 M78 50 V98 M96 50 V98 M12 102 H108 M8 110 H112"/></svg>
+          <span class="big">Meridian Museum</span>
+          <span class="badge live">Live</span>
+        </div>
+        <div class="body">
+          <span class="ctx">CSCU9X5 Human-Computer Interaction · University of Stirling · 2026</span>
+          <p>Meridian Museum of Antiquities: a museum site covering 5,000 years of history across seven galleries, from Egypt and Rome to the UAE. Visitors can filter collections by civilisation, walk a timeline, book tickets and take a 10-question quiz. Wireframed and prototyped in Figma first, then built with accessibility in from the start.</p>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Figma</span><span class="chip">Accessibility</span></div>
+          <div class="go"><a class="btn" href="https://glittering-crisp-75d098.netlify.app" target="_blank" rel="noopener">Visit live site ↗</a></div>
+        </div>
+      </article>
+      <article class="proj" style="--c:#39f58a;--ink:#062925">
+        <div class="cover">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="46"/><ellipse cx="60" cy="60" rx="20" ry="46"/><path d="M14 60 H106 M22 36 H98 M22 84 H98"/><circle cx="84" cy="40" r="4" fill="currentColor"/></svg>
+          <span class="big">Zenith</span>
+          <span class="badge wip">In progress</span>
+        </div>
+        <div class="body">
+          <span class="ctx">Personal project · Public website</span>
+          <p>A "God's eye view" of the world: live news plotted on an interactive globe, updating as stories break, with exact source links and alerts based on what each reader follows.</p>
+          <div class="chips"><span class="chip">JavaScript</span><span class="chip">3D globe</span><span class="chip">Live data</span></div>
+        </div>
+      </article>
+      <article class="proj" style="--c:#a99bff;--ink:#150f3a">
+        <div class="cover">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="22"/><ellipse cx="60" cy="60" rx="50" ry="14" transform="rotate(-20 60 60)"/><circle cx="104" cy="44" r="4"/><circle cx="22" cy="86" r="3"/></svg>
+          <span class="big">Space.ex</span>
+          <span class="badge live">Live</span>
+        </div>
+        <div class="body">
+          <span class="ctx">Team project · Space education</span>
+          <p>A guided tour of the cosmos, from the Sun out to galaxies 31 million light-years away. Pick any of the eight planets to see its data, drawn on a square-root size scale so the small worlds stay visible, then move on to the Milky Way and three neighbouring galaxies.</p>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Data scaling</span><span class="chip">Teamwork</span></div>
+          <div class="go"><a class="btn" href="https://phenomenal-syrniki-56bdb9.netlify.app/" target="_blank" rel="noopener">Visit live site ↗</a></div>
+        </div>
+      </article>
+      <article class="proj" style="--c:#f2b8d0;--ink:#3d0f24">
+        <div class="cover">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><rect x="12" y="34" width="96" height="56" rx="4"/><path d="M28 34V90M44 34V90M60 34V90M76 34V90M92 34V90"/><rect x="23" y="34" width="9" height="32" fill="currentColor"/><rect x="39" y="34" width="9" height="32" fill="currentColor"/><rect x="71" y="34" width="9" height="32" fill="currentColor"/><rect x="87" y="34" width="9" height="32" fill="currentColor"/></svg>
+          <span class="big">Amanda Kohn</span>
+          <span class="badge live">Live</span>
+        </div>
+        <div class="body">
+          <span class="ctx">Musician website · Classical pianist</span>
+          <p>A bilingual English and Portuguese site for Brazilian pianist Amanda Kohn. Visitors can play a real on-screen piano with the mouse or keyboard, adjusting octave, volume and reverb, then watch performances in a video player, read press quotes and send a booking enquiry.</p>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Interactive piano</span><span class="chip">EN / PT</span></div>
+          <div class="go"><a class="btn" href="https://gilded-gaufre-72a1ad.netlify.app/" target="_blank" rel="noopener">Visit live site ↗</a></div>
+        </div>
+      </article>
+      <article class="proj" style="--c:#ff9f80;--ink:#3a1206">
+        <div class="cover">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M46 86V30l50-12v56"/><circle cx="36" cy="86" r="11"/><circle cx="86" cy="74" r="11"/><path d="M46 44l50-12"/></svg>
+          <span class="big">Melodify</span>
+          <span class="badge live">Live</span>
+        </div>
+        <div class="body">
+          <span class="ctx">Music site · Artists and live shows</span>
+          <p>A music discovery site for finding artists and their live shows. The Artists page has search, cards showing each artist&#39;s genre and monthly listeners with links out to Spotify, Instagram and YouTube, a browse-by-genre section and a newsletter for new releases.</p>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Responsive</span></div>
+          <div class="go"><a class="btn" href="https://zesty-choux-414d93.netlify.app/artists" target="_blank" rel="noopener">Visit live site ↗</a></div>
+        </div>
+      </article>
+      <article class="proj" style="--c:#7ddc9e;--ink:#062a14">
+        <div class="cover">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M10 94c18-10 34-10 50 0s32 10 50 0"/><path d="M60 94V44"/><path d="M60 44c-10-10-24-10-32-4M60 44c10-10 24-10 32-4M60 44c-4-14-14-20-24-20M60 44c4-14 14-20 24-20"/><circle cx="96" cy="20" r="7"/></svg>
+          <span class="big">Visit Saudi</span>
+          <span class="badge ">Solo build</span>
+        </div>
+        <div class="body">
+          <span class="ctx">Solo project · Travel guide</span>
+          <p>A travel guide to Saudi Arabia covering six destinations, from Riyadh and AlUla to the Red Sea and the Edge of the World. It includes a currency converter from riyals into seven currencies, a photo gallery, trip-planning links for eVisas and flights, and a newsletter signup.</p>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Currency converter</span></div>
+          <div class="go"><a class="btn" href="https://golden-bienenstitch-7b2a6c.netlify.app/" target="_blank" rel="noopener">Visit live site ↗</a></div>
+        </div>
+      </article>
+      <article class="proj" style="--c:#9db8f2;--ink:#0b1a3a">
+        <div class="cover">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M8 64 H34 L44 38 L56 90 L68 30 L78 64 H112"/></svg>
+          <span class="big">MindEase</span>
+          <span class="badge">Full stack</span>
+        </div>
+        <div class="body">
+          <span class="ctx">SQA graded unit · Full-stack platform</span>
+          <p>A wellbeing platform with a React 18 front end, a Node.js and Express API, a Python machine-learning service and a MySQL database. Submitted with full technical documentation and defended in a viva.</p>
+          <div class="chips"><span class="chip">React 18</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Python ML</span><span class="chip">MySQL</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap skills-grid">
+      <div class="osi-col">
+        <div class="osi-head"><span class="eyebrow">// osi model · interactive</span><button class="btn ghost osi-send" id="osiSend">Send a packet ↓</button></div>
+        <div class="osi" id="osi">
+          <div class="stack" id="stack">
+            <button class="slab" style="--i:0" data-l="1"><span>L1 · PHYSICAL</span></button>
+            <button class="slab" style="--i:1" data-l="2"><span>L2 · DATA LINK</span></button>
+            <button class="slab" style="--i:2" data-l="3"><span>L3 · NETWORK</span></button>
+            <button class="slab" style="--i:3" data-l="4"><span>L4 · TRANSPORT</span></button>
+            <button class="slab" style="--i:4" data-l="5"><span>L5 · SESSION</span></button>
+            <button class="slab" style="--i:5" data-l="6"><span>L6 · PRESENTATION</span></button>
+            <button class="slab" style="--i:6" data-l="7"><span>L7 · APPLICATION</span></button>
+            <span class="pkt" id="pkt"></span>
+          </div>
+        </div>
+        <div class="osi-info" aria-live="polite">
+          <div class="oi-top"><span class="oi-num" id="oiNum">L7</span><span class="oi-name" id="oiName">Application</span><span class="oi-pdu" id="oiPdu">PDU · data</span></div>
+          <p class="oi-proto" id="oiProto">HTTP · HTTPS · DNS · SMTP</p>
+          <div class="chips" id="oiMine"></div>
+          <p class="oi-log" id="oiLog">// hover a layer, or send a packet down the stack</p>
+        </div>
+      </div>
+      <div class="skills-col">
+        <p class="eyebrow" data-fly="up">// skills</p>
+        <h2 data-fly="up" data-scramble>The full stack, down to layer 1</h2>
+        <div class="brk" data-fly="zoom"><div class="term">
+          <div class="top"><i></i><i></i><i></i><span>SG-CORE · console</span></div>
+<pre id="out" data-lenis-prevent><span class="l"><span class="p">SG-CORE#</span>show interfaces status</span><span class="l">Port   Name               Status</span><span class="l">Gi0/1  HTML CSS JS        <span class="ok">connected</span></span><span class="l">Gi0/2  React · Node       <span class="ok">connected</span></span><span class="l">Gi0/3  MySQL · Python     <span class="ok">connected</span></span><span class="l">Gi0/4  Figma · UI/UX      <span class="ok">connected</span></span><span class="l">Gi0/5  Packet Tracer      <span class="ok">connected</span></span><span class="l">Gi0/6  CCNA 200-301       <span class="lr">learning</span></span><span class="l"> </span><span class="l">This console is live. Type <span class="ok">help</span> to explore.</span></pre>
+          <form id="cli" autocomplete="off"><label for="cmd" class="p">guest@SG-CORE#</label><input id="cmd" name="cmd" spellcheck="false" autocapitalize="off" placeholder="try: ping sidharth"></form>
+        </div></div>
+        <div class="groups">
+          <div class="group"><h3>Web and UI/UX</h3><div class="chips" data-stagger><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">React 18</span><span class="chip">Figma</span><span class="chip">Wireframing</span><span class="chip">Accessibility</span></div></div>
+          <div class="group"><h3>Networking and systems</h3><div class="chips" data-stagger><span class="chip">Cisco Packet Tracer</span><span class="chip">CCNA (in progress)</span><span class="chip">Windows 11 admin</span><span class="chip">VirtualBox</span><span class="chip">Apache virtual hosts</span><span class="chip">IoT</span></div></div>
+          <div class="group"><h3>Data and back end</h3><div class="chips" data-stagger><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MySQL</span><span class="chip">Python</span><span class="chip">Java</span><span class="chip">VB.NET</span></div></div>
+          <div class="group"><h3>Team and delivery</h3><div class="chips" data-stagger><span class="chip">Team leadership</span><span class="chip">Git and Gitea</span><span class="chip">Change control</span><span class="chip">PDCA quality cycles</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="row"><span>Design</span><span>Build</span><span>Connect</span><span>Lead</span><span>Design</span><span>Build</span><span>Connect</span><span>Lead</span></div>
+  </div>
+
+  <section id="journey">
+    <div class="wrap">
+      <p class="eyebrow" data-fly="up">// journey</p>
+      <h2 data-fly="up" data-scramble>So far</h2>
+      <div class="tl">
+        <span class="fill"></span>
+        <div class="item" data-fly="right"><span class="when">Completed</span><h3>SQA Advanced Diploma in Computing: Software Development</h3><p>SQA, Ras Al Khaimah. Graded units included the MindEase full-stack platform, a Windows 11 Pro build covering 13 admin tasks, and Apache virtual hosts for four company sites.</p></div>
+        <div class="item" data-fly="right"><span class="when">Cisco Networking Academy</span><h3>Introduction to IoT and Networking Basics</h3><p>Hands-on labs in Cisco Packet Tracer.</p></div>
+        <div class="item" data-fly="right"><span class="when">October 2025 · Hackathon</span><h3>NASA Space Apps Challenge 2025</h3><p>Took part with team 405 Found at the Ras Al Khaimah local event, tackling the "Will It Rain On My Parade?" challenge. Earned a participant certificate.</p></div>
+        <div class="item" data-fly="right"><span class="when">June 2026</span><h3>IBM SkillsBuild: Cybersecurity Fundamentals</h3><p>Alongside IBM courses in AI fundamentals, machine-learning workflows and AI ethics.</p></div>
+        <div class="item" data-fly="right"><span class="when">September 2026</span><h3>BSc (Hons) Computer Science, University of Stirling</h3><p>Direct entry to third year at the Ras Al Khaimah campus. Modules include HCI, software engineering and machine learning.</p></div>
+        <div class="item" data-fly="right"><span class="when">Autumn 2026</span><h3>Team lead, Software Engineering 1</h3><p>Running a five-person team: repository, task board and code review.</p></div>
+        <div class="item" data-fly="right"><span class="when">Next</span><h3>Cisco CCNA 200-301</h3><p>Then a networking internship in the UAE.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-top">
+        <h2 class="together" aria-label="Let's build something"><span class="row1 split-c">Let's build</span><br><span class="row2 split-c">something</span></h2>
+        <div class="lap-wrap"><canvas id="lap" role="img" aria-label="A laptop drawn from thousands of tiny grains that scatter when you hover"></canvas><p class="hint" id="lapHint">hover to scatter</p></div>
+      </div>
+      <div class="reach">
+        <div class="cell"><span class="eyebrow">Email</span><a class="val" id="emailVal" href="mailto:sidharthgopakumar5804@gmail.com">sidharthgopakumar5804@gmail.com</a><button class="copy" data-copy="emailVal">Copy</button></div>
+        <div class="cell"><span class="eyebrow">LinkedIn</span><a class="val" href="https://www.linkedin.com/in/sidharth-gopakumar-2764a5336" target="_blank" rel="noopener">linkedin.com/in/sidharth-gopakumar ↗</a></div>
+        <div class="cell"><span class="eyebrow">Based in</span><span class="val">Ras Al Khaimah, UAE</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+  <footer id="site-footer">
+    <div class="ft-led" aria-hidden="true"><span></span></div>
+    <div class="wrap">
+      <div class="ft-grid">
+        <div class="ft-col ft-about">
+          <a class="mono-mark" href="#hero"><i>SG</i>Sidharth</a>
+          <p>Building websites and learning the networks underneath, from Ras Al Khaimah.</p>
+          <p class="ft-status"><span class="dot"></span>Available for internships</p>
+        </div>
+        <div class="ft-col" role="navigation" aria-label="Footer">
+          <span class="eyebrow">// navigate</span>
+          <a href="#about" data-scramble>About</a><a href="#work" data-scramble>Work</a><a href="#skills" data-scramble>Skills</a><a href="#journey" data-scramble>Journey</a><a href="#contact" data-scramble>Contact</a>
+        </div>
+        <div class="ft-col">
+          <span class="eyebrow">// elsewhere</span>
+          <a href="https://www.linkedin.com/in/sidharth-gopakumar-2764a5336" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href="mailto:sidharthgopakumar5804@gmail.com">Email ↗</a>
+          <a href="https://glittering-crisp-75d098.netlify.app" target="_blank" rel="noopener">Meridian Museum ↗</a>
+        </div>
+        <div class="ft-col ft-sys">
+          <span class="eyebrow">// system</span>
+          <dl>
+            <div><dt>local time</dt><dd id="ftTime">--:--:--</dd></div>
+            <div><dt>uptime</dt><dd id="ftUp">00:00:00</dd></div>
+            <div><dt>bits sent</dt><dd id="ftBits">0</dd></div>
+            <div><dt>stack</dt><dd>HTML · CSS · JS · Three.js · GSAP</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="ft-mark" id="ftMark" aria-hidden="true"><span class="ft-fill">SIDHARTH</span><span class="ft-out">SIDHARTH</span></div>
+    <div class="wrap ft-bottom">
+      <span>© 2026 Sidharth Gopakumar</span>
+      <span class="ft-cmd"><span class="p">SG-CORE#</span> copy run start <span class="ok">[OK]</span></span>
+      <a href="#hero" class="ft-top">Back to top ↑</a>
+    </div>
+  </footer>
+
+
+<script src="js/vendor/three.min.js"></script>
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script src="js/vendor/lenis.min.js"></script>
+<script src="js/main.js?v=9"></script>
+</body>
+</html>
