@@ -288,3 +288,24 @@ footer#site-footer{position:relative;z-index:2;background:linear-gradient(to bot
 .ft-col .soc a::before{content:none!important}
 .ft-col .soc a{font-size:13px;width:auto}
 .ft-col .soc a:hover{color:var(--aqua)}
+
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.cv-btn svg{flex:none}
+.reach-cta{display:flex;justify-content:center;margin-top:28px}
+@media (max-width:800px){.hero-btns{justify-content:flex-start}}
+@media (max-width:520px){
+  .btn{padding:12px 16px}
+  .name{letter-spacing:-.03em}
+  .roles{font-size:17px}
+  .statement{font-size:24px}
+  .work-head h2{font-size:32px}
+  #skills h2,#journey h2{font-size:36px}
+  .together{font-size:40px}
+  .lap-wrap{height:240px}
+  .reach .cell{padding:16px}
+  .osi{height:250px}
+  .stack{transform:rotateX(58deg) rotateZ(-38deg) scale(.78)}
+  .ft-mark{font-size:17.5vw}
+  section{scroll-margin-top:70px}
+}
+@media (hover:none){.proj .glare{display:none}}
