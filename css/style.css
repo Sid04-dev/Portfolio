@@ -309,3 +309,34 @@ footer#site-footer{position:relative;z-index:2;background:linear-gradient(to bot
   section{scroll-margin-top:70px}
 }
 @media (hover:none){.proj .glare{display:none}}
+
+/* ---------- flying cards (Selected work) ---------- */
+#work.flywork{position:relative;z-index:3;height:100vh;height:100svh;overflow:hidden;background:radial-gradient(ellipse at 50% 55%,#0d1611 0%,#060908 70%)}
+#fwarp{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fspace{position:absolute;inset:0;perspective:1100px;perspective-origin:50% 50%}
+.fcard{position:absolute;left:50%;top:52%;width:min(330px,76vw);height:440px;margin:-220px 0 0 calc(min(330px,76vw) / -2);background:var(--raise);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;will-change:transform,opacity;backface-visibility:hidden;transform-style:preserve-3d;transition:border-color .3s,box-shadow .3s}
+.fcard.focus{border-color:var(--aqua);box-shadow:0 0 0 1px rgba(57,245,138,.3),0 40px 120px -30px rgba(57,245,138,.35)}
+.fcover{position:relative;height:150px;background:var(--c);padding:18px;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex:none}
+.fcover svg{position:absolute;right:16px;top:14px;width:84px;height:84px;stroke:var(--ink);fill:none;stroke-width:2;opacity:.8;transition:transform .2s ease-out}
+.fbig{position:relative;font:800 27px/.95 var(--display);color:var(--ink);transition:transform .2s ease-out}
+.fbadge{position:relative;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(9,13,11,.85);color:var(--fg);white-space:nowrap}
+.fbadge.live{color:var(--aqua)}.fbadge.wip{color:var(--yellow)}
+.fbody{padding:18px;display:flex;flex-direction:column;gap:11px;flex:1;min-height:0}
+.fctx{font:400 12px var(--mono);color:var(--muted)}
+.fbody p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+.fgo{margin-top:auto}
+.fcard .btn{padding:12px 18px}
+.fcard .btn.dim{background:transparent;color:var(--muted);box-shadow:inset 0 0 0 1px var(--line)}
+.fhud{position:absolute;left:50%;transform:translateX(-50%);width:100%;max-width:1240px;box-sizing:border-box;top:86px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;z-index:500;pointer-events:none}
+.fhud h2{font:800 clamp(28px,4.4vw,52px)/.95 var(--display);margin:8px 0 0;letter-spacing:-.02em}
+.fhud .count{font:500 14px var(--mono);color:var(--muted);text-align:right}
+.fhud .count b{color:var(--aqua);font-weight:500;font-size:28px;display:block}
+.fspeed{position:absolute;left:50%;transform:translateX(-50%);width:100%;max-width:1240px;box-sizing:border-box;bottom:26px;z-index:500;display:flex;justify-content:space-between;align-items:center;gap:16px;pointer-events:none;font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.fspeed b{color:var(--aqua);font-weight:500}
+.ftrack{flex:1;max-width:360px;height:2px;background:var(--line);position:relative;border-radius:2px}
+.ftrack i{position:absolute;left:0;top:0;height:100%;width:0;background:var(--aqua);border-radius:2px}
+@media (min-width:1400px){.fcard{width:440px;height:560px;margin:-280px 0 0 -220px}.fcover{height:190px;padding:22px}.fcover svg{width:110px;height:110px}.fbig{font-size:34px}.fbody{padding:22px;gap:14px}.fbody p{font-size:16px}.fctx{font-size:13px}.fcard .btn{font-size:15px;padding:14px 20px}}
+@media (max-width:600px){.fcard{height:410px;margin-top:-205px}.fcover{height:124px}.fspace{perspective:800px}.fhud{top:72px}}
+@media (max-height:700px){.fcard{height:380px;margin-top:-190px}.fcover{height:110px}.fbody p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.fhud{top:64px}.fhud h2{font-size:26px}}
+.fhud,.fspeed{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.fhud .count{white-space:nowrap;flex:none}
