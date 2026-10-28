@@ -578,7 +578,11 @@ if (G) {
     document.querySelectorAll('h2[data-scramble]').forEach(h => ScrollTrigger.create({ trigger: h, start: 'top 85%', onEnter: () => scramble(h) }));
     gsap.from('.term .l', { clipPath: 'inset(0 100% 0 0)', stagger: .18, duration: .5, ease: 'steps(18)', scrollTrigger: { trigger: '.term', start: 'top 80%', once: true } });
 
-    gsap.to('.marquee .row', { xPercent: -30, ease: 'none', scrollTrigger: { trigger: '.marquee', start: 'top bottom', end: 'bottom top', scrub: true } });
+    const mqRow = document.querySelector('.marquee .row');
+    const mq = gsap.to(mqRow, { xPercent: -50, ease: 'none', duration: 22, repeat: -1 });
+    let mqBoost = 0;
+    ScrollTrigger.create({ trigger: '.marquee', start: 'top bottom', end: 'bottom top', onUpdate: self => { mqBoost = Math.min(6, Math.abs(self.getVelocity()) / 300); } });
+    gsap.ticker.add(() => { mqBoost *= .93; mq.timeScale(1 + mqBoost); });
 
     gsap.fromTo('.tl .fill', { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '.tl', start: 'top 70%', end: 'bottom 60%', scrub: true } });
     document.querySelectorAll('.tl .item').forEach(it => ScrollTrigger.create({ trigger: it, start: 'top 65%', toggleClass: { targets: it, className: 'on' } }));
@@ -605,8 +609,9 @@ if (G) {
 
   let progress = 0, target = 0, vel = 0, mx = 0, my = 0, smx = 0, smy = 0, focusIdx = -1;
   if (G) {
-    const st = ScrollTrigger.create({ trigger: fly, pin: true, start: 'top top', end: () => '+=' + innerHeight * N * 1.1, invalidateOnRefresh: true, onUpdate: s => { target = s.progress; } });
+    const st = ScrollTrigger.create({ trigger: fly, pin: true, refreshPriority: 10, start: 'top top', end: () => '+=' + innerHeight * N * 1.1, invalidateOnRefresh: true, onUpdate: s => { target = s.progress; } });
     pinST = st;
+    ScrollTrigger.sort();
   }
   addEventListener('pointermove', e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; });
 
