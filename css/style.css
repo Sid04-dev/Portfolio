@@ -276,3 +276,14 @@ footer#site-footer{position:relative;z-index:2;background:linear-gradient(to bot
 @media (max-width:900px){.ft-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ft-about,.ft-sys{grid-column:1/-1}}
 @media (max-width:520px){.ft-grid{gap:32px 20px}.ft-cmd{display:none}.ft-mark{margin-top:48px}}
 @media (prefers-reduced-motion:reduce){.ft-led span,.ft-status .dot{animation:none}}
+
+.flag{width:24px;height:16px;border-radius:3px;flex:none;box-shadow:0 0 0 1px var(--line)}
+.based{display:flex;align-items:center;gap:10px}
+.soc{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+.soc a{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 14px;color:var(--fg);text-decoration:none;font:500 13px var(--body);transition:border-color .25s,color .25s,translate .25s,box-shadow .25s}
+.soc a svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.soc a:hover{border-color:var(--aqua);color:var(--aqua);translate:0 -2px;box-shadow:0 0 18px rgba(57,245,138,.22)}
+.ft-about .soc{margin-top:4px}
+.ft-col .soc a::before{content:none!important}
+.ft-col .soc a{font-size:13px;width:auto}
+.ft-col .soc a:hover{color:var(--aqua)}
