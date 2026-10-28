@@ -124,7 +124,7 @@ function pingAt(x, y) {
   ], { duration: 1100, easing: 'ease-out', fill: 'both' }).onfinish = () => word.remove();
 }
 addEventListener('pointerdown', e => {
-  if (e.target.closest('a,button,input,form,.term,.proj,.reach,nav,.lap-wrap')) return;
+  if (e.target.closest('a,button,input,form,.term,.proj,.fcard,.reach,nav,.lap-wrap')) return;
   pingAt(e.clientX, e.clientY);
 });
 
@@ -575,21 +575,6 @@ if (G) {
     document.querySelectorAll('[data-fly]').forEach(el => gsap.from(el, Object.assign({ opacity: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none reverse' } }, fly[el.dataset.fly])));
     document.querySelectorAll('[data-stagger]').forEach(el => gsap.from(el.children, { y: 30, opacity: 0, scale: .8, stagger: .05, duration: .8, ease: 'back.out(1.8)', scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none reverse' } }));
 
-    const track = document.querySelector('.track');
-    const dist = () => Math.max(0, track.scrollWidth - innerWidth);
-    const lead = () => Math.max(0, innerWidth * .6 - dist());
-    const endX = () => {
-      if (dist() > 0) return -dist();
-      const cs = getComputedStyle(track), pl = parseFloat(cs.paddingLeft), pr = parseFloat(cs.paddingRight);
-      return Math.max(0, (innerWidth - (track.scrollWidth - pl - pr)) / 2 - pl);
-    };
-    const horiz = gsap.fromTo(track, { x: () => endX() + dist() + lead() }, { x: () => endX(), ease: 'none', scrollTrigger: { trigger: '#work', pin: true, scrub: 1, start: 'top top', end: () => '+=' + (dist() + lead() + innerHeight * .3), invalidateOnRefresh: true } });
-    pinST = horiz.scrollTrigger;
-    document.querySelectorAll('.pw').forEach(p => {
-      gsap.from(p, { rotationY: -38, z: -200, opacity: 0, transformPerspective: 1200, transformOrigin: '0% 50%', ease: 'power2.out', scrollTrigger: { trigger: p, containerAnimation: horiz, start: 'left 102%', end: 'left 78%', scrub: true } });
-      gsap.from(p.querySelector('.cover svg'), { rotate: -90, scale: .3, ease: 'power2.out', scrollTrigger: { trigger: p, containerAnimation: horiz, start: 'left 98%', end: 'left 70%', scrub: true } });
-    });
-
     document.querySelectorAll('h2[data-scramble]').forEach(h => ScrollTrigger.create({ trigger: h, start: 'top 85%', onEnter: () => scramble(h) }));
     gsap.from('.term .l', { clipPath: 'inset(0 100% 0 0)', stagger: .18, duration: .5, ease: 'steps(18)', scrollTrigger: { trigger: '.term', start: 'top 80%', once: true } });
 
@@ -605,6 +590,107 @@ if (G) {
     gsap.from('.reach .cell', { y: 50, opacity: 0, stagger: .1, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: '.reach', start: 'top 92%', toggleActions: 'play none none reverse' } });
   });
 }
+
+/* ---------- flying cards (Selected work) ---------- */
+(function () {
+  const fly = document.getElementById('work');
+  const cards = [...fly.querySelectorAll('.fcard')], N = cards.length;
+  const space = document.getElementById('fspace');
+  const titleEl = document.getElementById('ftitle'), curEl = document.getElementById('fcur');
+  const velEl = document.getElementById('fvel'), depEl = document.getElementById('fdep'), progEl = document.getElementById('fprog');
+  let active = true;
+  new IntersectionObserver(es => es.forEach(e => { active = e.isIntersecting; })).observe(fly);
+  const GAP = () => innerWidth < 600 ? 1500 : 2200;
+  const lane = cards.map((c, i) => ({ x: (i % 2 ? 1 : -1) * (0.55 + Math.random() * .25), y: (Math.random() - .5) * .5, ry: (i % 2 ? -1 : 1) * (28 + Math.random() * 14), rz: (Math.random() - .5) * 26 }));
+
+  let progress = 0, target = 0, vel = 0, mx = 0, my = 0, smx = 0, smy = 0, focusIdx = -1;
+  if (G) {
+    const st = ScrollTrigger.create({ trigger: fly, pin: true, start: 'top top', end: () => '+=' + innerHeight * N * 1.1, invalidateOnRefresh: true, onUpdate: s => { target = s.progress; } });
+    pinST = st;
+  }
+  addEventListener('pointermove', e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; });
+
+  /* dwell: camera slows at each card so it can be read, then surges between them */
+  const dwell = f => f - Math.sin(2 * Math.PI * f) / (2 * Math.PI);
+  function camZ(p) { const t = p * (N - 1) + .0001, k = Math.floor(t), f = t - k; return (k + dwell(f)) * GAP(); }
+
+  /* warp streaks */
+  const cv = document.getElementById('fwarp'), ctx = cv.getContext('2d'); let W, H;
+  const S = Array.from({ length: matchMedia('(pointer:coarse)').matches ? 140 : 260 }, () => ({ a: Math.random() * Math.PI * 2, r: Math.random(), z: Math.random() }));
+  function size() { const d = Math.min(devicePixelRatio || 1, 2); W = cv.clientWidth; H = cv.clientHeight; cv.width = W * d; cv.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+  size(); addEventListener('resize', size);
+
+  let last = performance.now(), lastZ = 0;
+  function frame(now) {
+    if (!active) { last = now; requestAnimationFrame(frame); return; }
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    progress += (target - progress) * (reduce ? 1 : 1 - Math.exp(-dt * 6));
+    const z = camZ(progress), g = GAP();
+    const dz = (z - lastZ) / Math.max(dt, .001); lastZ = z;
+    vel += ((Math.abs(dz) / 4000) - vel) * .12;
+    smx += (mx - smx) * .06; smy += (my - smy) * .06;
+    space.style.perspectiveOrigin = `${50 + smx * 18}% ${50 + smy * 14}%`;
+
+    let best = -1, bestD = 1e9;
+    cards.forEach((c, i) => {
+      const d = z - i * g;               /* 0 = right in front of you; negative = still ahead; positive = flown past */
+      const ahead = Math.max(0, -d) / g; /* 0..N cards away */
+      const L = lane[i], spread = Math.min(1, ahead * 1.1);
+      const push = 1 + Math.min(ahead, 2) * 1.3;
+      const x = L.x * innerWidth * .62 * spread * push, y = L.y * innerHeight * .5 * spread * (1 + Math.min(ahead, 2) * .6);
+      const past = Math.max(0, d);
+      const tz = -Math.max(0, -d) * .9 + past * 1.4;
+      const ry = L.ry * spread + (past > 0 ? (i % 2 ? 1 : -1) * past / g * 50 : 0);
+      const rz = L.rz * spread;
+      let op = 1;
+      if (ahead > 2.6) op = Math.max(0, 1 - (ahead - 2.6) / .8);
+      if (past > 0) op = Math.max(0, 1 - past / (g * .45));
+      if (op <= .01) { c.style.visibility = 'hidden'; return; }
+      c.style.visibility = 'visible';
+      if (!c.matches('.focus:hover')) c.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,${tz.toFixed(1)}px) rotateY(${ry.toFixed(2)}deg) rotateZ(${rz.toFixed(2)}deg)`;
+      c.style.opacity = op.toFixed(3);
+      c.style.filter = ahead > .25 ? `blur(${Math.min(4, (ahead - .25) * 2.2).toFixed(2)}px) brightness(${(1 - Math.min(.6, ahead * .28)).toFixed(2)})` : 'none';
+      c.style.zIndex = 400 - Math.round(Math.abs(d) / 20);
+      c.style.pointerEvents = Math.abs(d) < g * .18 ? 'auto' : 'none';
+      if (Math.abs(d) < bestD) { bestD = Math.abs(d); best = i; }
+    });
+    const settled = bestD < g * .12;
+    cards.forEach((c, i) => c.classList.toggle('focus', i === best && settled));
+    if (best !== focusIdx) { focusIdx = best; titleEl.textContent = cards[best].dataset.t; curEl.textContent = String(best + 1).padStart(2, '0'); }
+    velEl.textContent = Math.min(9.99, vel).toFixed(2);
+    depEl.textContent = Math.round(z / 10).toLocaleString('en-US');
+    progEl.style.width = (progress * 100).toFixed(1) + '%';
+
+    /* streaks rush outward from the vanishing point; faster when you scroll faster */
+    ctx.fillStyle = 'rgba(6,9,8,.32)'; ctx.fillRect(0, 0, W, H);
+    const cx = W * (.5 + smx * .18), cy = H * (.5 + smy * .14), boost = reduce ? .2 : .25 + Math.min(4, vel) * 1.6;
+    ctx.lineCap = 'round';
+    for (const s of S) {
+      s.z += dt * (.08 + boost * .35);
+      if (s.z > 1) { s.z = 0; s.a = Math.random() * Math.PI * 2; s.r = Math.random(); }
+      const R = Math.max(W, H) * .75, d1 = Math.pow(s.z, 2.4) * R, d0 = Math.pow(Math.max(0, s.z - .02 - boost * .02), 2.4) * R;
+      const off = 30 + s.r * 40;
+      const x0 = cx + Math.cos(s.a) * (d0 + off), y0 = cy + Math.sin(s.a) * (d0 + off), x1 = cx + Math.cos(s.a) * (d1 + off), y1 = cy + Math.sin(s.a) * (d1 + off);
+      ctx.strokeStyle = s.r < .12 ? `rgba(242,194,48,${s.z * .8})` : `rgba(57,245,138,${s.z * .75})`;
+      ctx.lineWidth = .4 + s.z * 1.6;
+      ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  /* hover parallax on the card in front of you */
+  cards.forEach(c => {
+    c.addEventListener('pointermove', e => {
+      if (!c.classList.contains('focus') || reduce || e.pointerType !== 'mouse') return;
+      const r = c.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+      c.style.transform = `translate3d(0,0,40px) rotateY(${(px * 14).toFixed(2)}deg) rotateX(${(-py * 10).toFixed(2)}deg)`;
+      c.querySelectorAll('[data-d]').forEach(el => { const d = +el.dataset.d; el.style.transform = `translate(${(px * 16 * d).toFixed(1)}px,${(py * 12 * d).toFixed(1)}px)`; });
+    });
+    c.addEventListener('pointerleave', () => c.querySelectorAll('[data-d]').forEach(el => el.style.transform = ''));
+  });
+})();
+
 if (!G || reduce) document.querySelectorAll('.tl .item').forEach(i => i.classList.add('on'));
 
 /* scroll positions where the network changes shape */
