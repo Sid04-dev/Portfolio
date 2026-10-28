@@ -290,7 +290,7 @@ if (G && FINE && !reduce) {
   function build() {
     const b = cv.getBoundingClientRect(); if (!b.width) return;
     const old = P; W = Math.floor(b.width); H = Math.floor(b.height);
-    const dpr = Math.min(2, devicePixelRatio || 1);
+    const dpr = Math.min(matchMedia('(pointer:coarse)').matches ? 1.5 : 2, devicePixelRatio || 1);
     cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const o = document.createElement('canvas'); o.width = W; o.height = H; const g = o.getContext('2d');
     const sw = Math.min(W / 1.6 * .7, H / 1.6 * 1.1), sh = sw * .64, deckH = sw * .2;
@@ -316,7 +316,7 @@ if (G && FINE && !reduce) {
     }
     g.fillStyle = BLUE; const tw = sw * .26, ty = by + deckH * .7;
     g.beginPath(); g.moveTo(sx + sw / 2 - tw / 2, ty); g.lineTo(sx + sw / 2 + tw / 2, ty); g.lineTo(sx + sw / 2 + tw / 2 + spread * .12, by + deckH * .94); g.lineTo(sx + sw / 2 - tw / 2 - spread * .12, by + deckH * .94); g.closePath(); g.fill();
-    const d = g.getImageData(0, 0, W, H).data, step = W < 380 ? 3.2 : 2.7;
+    const d = g.getImageData(0, 0, W, H).data, step = matchMedia('(pointer:coarse)').matches ? 3.4 : (W < 380 ? 3.2 : 2.7);
     P = [];
     for (let y = 0; y < H; y += step) for (let x = 0; x < W; x += step) {
       const i = (Math.floor(y) * W + Math.floor(x)) * 4;
@@ -449,7 +449,8 @@ if (G && FINE && !reduce) {
   }
   if (reduce) { for (let k = 0; k < 120; k++) draw(1); return; }
   let last = 0;
-  (function loop(t) { if (t - last > 33) { draw(Math.min(3, (t - last) / 50)); last = t; } requestAnimationFrame(loop); })(0);
+  const RAIN_MS = matchMedia('(pointer:coarse)').matches ? 50 : 33;
+  (function loop(t) { if (t - last > RAIN_MS) { draw(Math.min(3, (t - last) / 50)); last = t; } requestAnimationFrame(loop); })(0);
 })();
 
 /* ---------- 3D network ---------- */
@@ -636,7 +637,10 @@ if (net.ok) {
   addEventListener('pointermove', e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; });
   const v = new THREE.Vector3(), u = new THREE.Vector3(), push = new Float32Array(net.N);
   let hasMouse = false; addEventListener('pointermove', e => { if (e.pointerType === 'mouse') hasMouse = true; });
+  const COARSE = matchMedia('(pointer:coarse)').matches;
+  let skip = false;
   function frame(now) {
+    if (COARSE) { skip = !skip; if (skip) { requestAnimationFrame(frame); return; } }
     const dt = Math.min(.05, (now - last) / 1000); last = now; time += dt;
     const y = lenis ? lenis.scroll : scrollY;
     const tg = target(y), k = reduce ? 1 : 1 - Math.exp(-dt * 4.5);
