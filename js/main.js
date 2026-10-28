@@ -43,7 +43,7 @@ const esc = t => t.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&
 const print = (html, cls) => { const l = document.createElement('span'); l.className = 'l'; l.innerHTML = html; out.appendChild(l); out.scrollTop = out.scrollHeight; };
 const wait = ms => new Promise(r => setTimeout(r, ms));
 const COMMANDS = {
-  help: () => ['Available commands:', '  whoami          who is this', '  projects        what I have built', '  skills          what I work with', '  ping sidharth   check if I am available', '  traceroute      where my career is routing', '  contact         how to reach me', '  date            local time in the UAE', '  sudo hire-me    you know what this does', '  clear           clear the screen'],
+  help: () => ['Available commands:', '  whoami          who is this', '  projects        what I have built', '  skills          what I work with', '  ping sidharth   check if I am available', '  traceroute      where my career is routing', '  contact         how to reach me', '  date            local time in the UAE', '  sudo hire-me    a little surprise', '  clear           clear the screen'],
   whoami: () => ['Sidharth Gopakumar', 'BSc (Hons) Computer Science, University of Stirling (year 3)', 'SQA Advanced Diploma in Computing: Software Development', 'Ras Al Khaimah, UAE'],
   projects: () => ['<span class="ok">meridian</span>   Meridian Museum of Antiquities · <a href="https://glittering-crisp-75d098.netlify.app" target="_blank" rel="noopener">live ↗</a>', '<span class="ok">zenith</span>     live world-news globe (in progress)', '<span class="ok">space.ex</span>   tour of the solar system · <a href="https://phenomenal-syrniki-56bdb9.netlify.app/" target="_blank" rel="noopener">live ↗</a>', '<span class="ok">amanda-kohn</span> pianist site with playable piano · <a href="https://gilded-gaufre-72a1ad.netlify.app/" target="_blank" rel="noopener">live ↗</a>', '<span class="ok">melodify</span>   music discovery and live shows · <a href="https://zesty-choux-414d93.netlify.app/artists" target="_blank" rel="noopener">live ↗</a>', '<span class="ok">visit-saudi</span> Saudi Arabia travel guide · <a href="https://golden-bienenstitch-7b2a6c.netlify.app/" target="_blank" rel="noopener">live ↗</a>', '<span class="ok">mindease</span>   React + Node + Python ML + MySQL'],
   skills: () => ['web      HTML CSS JavaScript React Figma', 'backend  Node.js Express MySQL Python Java VB.NET', 'network  Packet Tracer · TCP/IP · <span class="lr">CCNA 200-301 in progress</span>', 'systems  Windows 11 admin · VirtualBox · Apache vhosts · WSL', 'team     team lead · Git/Gitea · change control · PDCA'],
@@ -72,7 +72,13 @@ document.getElementById('cli').addEventListener('submit', async e => {
   hist.push(raw); hi = hist.length;
   const word = raw.toLowerCase().split(/\s+/)[0];
   const fn = COMMANDS[word];
-  if (!fn) { print(`${esc(raw)}`); print(' '.repeat(Math.min(raw.length, 1)) + '^'); print('<span class="lr">% Invalid input detected at \'^\' marker.</span> Type help.'); return; }
+  if (!fn) {
+    const low = raw.toLowerCase();
+    const hint = [['hire', 'sudo hire-me'], ['surprise', 'sudo hire-me'], ['you know', 'sudo hire-me'], ['ping', 'ping sidharth'], ['trace', 'traceroute'], ['who', 'whoami'], ['project', 'projects'], ['skill', 'skills'], ['contact', 'contact'], ['mail', 'contact'], ['time', 'date']].find(([k]) => low.includes(k));
+    print(`${esc(raw)}`); print('^'); print('<span class="lr">% Invalid input detected at \'^\' marker.</span>');
+    print(hint ? `Did you mean <span class="ok">${hint[1]}</span>? Type it exactly, or type help.` : 'Type <span class="ok">help</span> to see the commands.');
+    return;
+  }
   cmd.disabled = true;
   const res = await fn(raw); (res || []).forEach(l => print(l));
   cmd.disabled = false; cmd.focus();
