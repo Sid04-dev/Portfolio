@@ -151,8 +151,9 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-
 .together{font-size:clamp(40px,6vw,104px);text-transform:uppercase;line-height:.88}
 .together .wd{display:inline-block;white-space:nowrap}
 .contact-top{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:4vw;align-items:center}
-.lap-wrap{display:flex;flex-direction:column;align-items:center;gap:6px}
-#lap{width:100%;height:clamp(260px,32vw,420px);display:block;touch-action:pan-y}
+.lap-wrap{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:clamp(260px,32vw,420px);touch-action:pan-y}
+#lap{position:absolute;left:-30%;top:-30%;width:160%;height:160%;display:block;pointer-events:none;z-index:0;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%)}
+.lap-wrap .hint{position:relative;z-index:1;margin-bottom:-26px}
 .together .c{display:inline-block}
 .together .row2{color:var(--aqua)}
 .reach{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:56px}
