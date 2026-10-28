@@ -293,7 +293,7 @@ if (G && FINE && !reduce) {
     const dpr = Math.min(2, devicePixelRatio || 1);
     cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const o = document.createElement('canvas'); o.width = W; o.height = H; const g = o.getContext('2d');
-    const sw = Math.min(W * .66, H * 1.05), sh = sw * .64, deckH = sw * .2;
+    const sw = Math.min(W / 1.6 * .7, H / 1.6 * 1.1), sh = sw * .64, deckH = sw * .2;
     const sx = (W - sw) / 2, sy = (H - sh - deckH - 10) / 2;
     const WHITE = '#ffffff', BLUE = '#0000ff', RED = '#ff0000', GREEN = '#00ff00';
     g.fillStyle = WHITE; rr(g, sx, sy, sw, sh, sw * .035); g.fill();
@@ -341,10 +341,11 @@ if (G && FINE && !reduce) {
     });
   }
   const pos = e => { const b = cv.getBoundingClientRect(); mx = e.clientX - b.left; my = e.clientY - b.top; };
-  cv.addEventListener('pointerenter', e => { if (e.pointerType !== 'mouse' || reduce) return; pos(e); free = true; burst(mx, my, 11); hint.textContent = 'move away to rebuild'; });
-  cv.addEventListener('pointermove', e => { if (e.pointerType === 'mouse') pos(e); });
-  cv.addEventListener('pointerleave', e => { if (e.pointerType !== 'mouse') return; mx = my = -999; free = false; hint.textContent = 'hover to scatter'; });
-  cv.addEventListener('pointerdown', e => {
+  const hit = cv.parentElement;
+  hit.addEventListener('pointerenter', e => { if (e.pointerType !== 'mouse' || reduce) return; pos(e); free = true; burst(mx, my, 11); hint.textContent = 'move away to rebuild'; });
+  hit.addEventListener('pointermove', e => { if (e.pointerType === 'mouse') pos(e); });
+  hit.addEventListener('pointerleave', e => { if (e.pointerType !== 'mouse') return; mx = my = -999; free = false; hint.textContent = 'hover to scatter'; });
+  hit.addEventListener('pointerdown', e => {
     if (e.pointerType === 'mouse' || reduce) return;
     pos(e); free = !free; if (free) burst(mx, my, 11); hint.textContent = free ? 'tap to rebuild' : 'tap to scatter'; mx = my = -999;
   });
@@ -353,7 +354,7 @@ if (G && FINE && !reduce) {
   new IntersectionObserver(es => es.forEach(en => {
     visible = en.isIntersecting;
     if (visible && !built) build();
-    if (visible && free && !cv.matches(':hover')) setTimeout(() => { if (!cv.matches(':hover')) free = false; }, 250);
+    if (visible && free && !cv.parentElement.matches(':hover')) setTimeout(() => { if (!cv.parentElement.matches(':hover')) free = false; }, 250);
   }), { threshold: .25 }).observe(cv);
   let lw = innerWidth; addEventListener('resize', () => { if (built && innerWidth !== lw) { lw = innerWidth; build(); } });
   if (reduce) { free = false; }
@@ -369,8 +370,6 @@ if (G && FINE && !reduce) {
         const dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
         if (d2 < 9000) { const dd = Math.sqrt(d2) || 1, f = (95 - dd) / 95 * 2.2; p.vx += dx / dd * f; p.vy += dy / dd * f; }
         const fr = free ? .94 : .84; p.vx *= fr; p.vy *= fr; p.x += p.vx; p.y += p.vy;
-        if (p.x < 2 || p.x > W - 2) { p.vx *= -.5; p.x = Math.min(W - 2, Math.max(2, p.x)); }
-        if (p.y < 2 || p.y > H - 2) { p.vy *= -.5; p.y = Math.min(H - 2, Math.max(2, p.y)); }
         p.a += (p.vx - p.vy) * .03;
         if (!free) p.a += (p.ha - p.a) * .06;
       }
