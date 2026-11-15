@@ -403,6 +403,18 @@ if (G && FINE && !reduce) {
   }
 })();
 
+
+/* certificate viewer */
+(function () {
+  const modal = document.getElementById('certModal'); if (!modal) return;
+  const close = modal.querySelector('.cert-close'); let last = null;
+  const open = () => { last = document.activeElement; modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); close.focus(); };
+  const shut = () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); if (last) last.focus(); };
+  document.querySelectorAll('[data-cert]').forEach(el => el.addEventListener('click', e => { if (e.target.closest('a')) return; e.stopPropagation(); open(); }));
+  close.addEventListener('click', shut);
+  modal.addEventListener('click', e => { if (e.target === modal) shut(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) shut(); });
+})();
 /* data stream background */
 (function rain() {
   const c = document.getElementById('rain'), x = c.getContext('2d');
