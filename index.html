@@ -10,7 +10,7 @@
 <meta property="og:site_name" content="Sidharth Gopakumar">
 <meta property="og:url" content="https://sid04-dev.github.io/Portfolio/">
 <meta property="og:title" content="Sidharth Gopakumar | Portfolio">
-<meta property="og:description" content="Web developer, UI/UX designer and network engineer in training. BSc Computer Science, University of Stirling. Seven web projects, a 3D OSI model and a live network console.">
+<meta property="og:description" content="Web developer, UI/UX designer and network engineer in training. BSc Computer Science, University of Stirling. Eight web projects, a 3D OSI model and a live network console.">
 <meta property="og:image" content="https://sid04-dev.github.io/Portfolio/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="css/style.css?v=14">
+<link rel="stylesheet" href="css/style.css?v=15">
 </head>
 <body>
 <canvas id="rain" aria-hidden="true"></canvas>
@@ -79,6 +79,10 @@
   <section id="work" class="flywork">
   <canvas id="fwarp"></canvas>
   <div class="fspace" id="fspace">
+    <article class="fcard" style="--c:#6ec6ff;--ink:#03243a" data-t="TerraTrace">
+      <div class="fcover"><svg data-d="1.6" viewBox="0 0 120 120"><circle cx="60" cy="64" r="40"/><ellipse cx="60" cy="64" rx="16" ry="40"/><path d="M20 64 H100"/><path d="M42 34 V14 M60 24 V6 M78 34 V18"/></svg><span class="fbig" data-d=".8">TerraTrace</span><span class="fbadge live">Live</span></div>
+      <div class="fbody"><span class="fctx">NASA Space Apps 2026 · Team The Hotspot</span><p>An Earth-data detective for students: click anywhere on a 3D globe to see how it's changing, with statistically tested trends, an assistant, and citation-ready exports. I built the interactive globe and frontend.</p><div class="chips"><span class="chip">JavaScript</span><span class="chip">Globe.gl</span><span class="chip">NASA data</span><span class="chip">Teamwork</span></div><div class="fgo"><a class="btn" href="https://terratrace.pages.dev" target="_blank" rel="noopener">Visit live site ↗</a></div></div>
+    </article>
     <article class="fcard" style="--c:#d9b56b;--ink:#2a1d07" data-t="Meridian Museum">
       <div class="fcover"><svg data-d="1.6" viewBox="0 0 120 120"><path d="M10 40 L60 12 L110 40 Z M16 44 H104 M24 50 V98 M42 50 V98 M60 50 V98 M78 50 V98 M96 50 V98 M12 102 H108"/></svg><span class="fbig" data-d=".8">Meridian Museum</span><span class="fbadge live">Live</span></div>
       <div class="fbody"><span class="fctx">CSCU9X5 HCI · University of Stirling</span><p>A museum site covering 5,000 years of history across seven galleries, with a timeline, ticket booking and a 10-question quiz.</p><div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Figma</span></div><div class="fgo"><a class="btn" href="https://glittering-crisp-75d098.netlify.app" target="_blank" rel="noopener">Visit live site ↗</a></div></div>
@@ -108,7 +112,7 @@
       <div class="fbody"><span class="fctx">SQA graded unit · Full-stack platform</span><p>A wellbeing platform with a React front end, Node.js API, Python machine-learning service and MySQL database.</p><div class="chips"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Python ML</span><span class="chip">MySQL</span></div><div class="fgo"><span class="btn dim">Graded coursework</span></div></div>
     </article>
   </div>
-  <div class="fhud pad"><div><p class="eyebrow">// selected work · now approaching</p><h2 id="ftitle">Meridian Museum</h2></div><div class="count"><b id="fcur">01</b>of 07</div></div>
+  <div class="fhud pad"><div><p class="eyebrow">// selected work · now approaching</p><h2 id="ftitle">TerraTrace</h2></div><div class="count"><b id="fcur">01</b>of 08</div></div>
   <div class="fspeed pad"><span>velocity <b id="fvel">0.00</b> c</span><div class="ftrack"><i id="fprog"></i></div><span>depth <b id="fdep">0</b> m</span></div>
   </section>
 
@@ -169,6 +173,7 @@
         <div class="item" data-fly="right"><span class="when">June 2026</span><h3>IBM SkillsBuild: Cybersecurity Fundamentals</h3><p>Alongside IBM courses in AI fundamentals, machine-learning workflows and AI ethics.</p></div>
         <div class="item" data-fly="right"><span class="when">September 2026</span><h3>BSc (Hons) Computer Science, University of Stirling</h3><p>Direct entry to third year at the Ras Al Khaimah campus. Modules include HCI, software engineering and machine learning.</p></div>
         <div class="item" data-fly="right"><span class="when">Autumn 2026</span><h3>Team lead, Software Engineering 1</h3><p>Running a five-person team: repository, task board and code review.</p></div>
+        <div class="item" data-fly="right"><span class="when">November 2026 · Hackathon</span><h3>NASA Space Apps Challenge 2026</h3><p>Built TerraTrace with team The Hotspot, five Stirling students, for the Abu Dhabi local event, tackling the "Be an Earth System Trend Detective" challenge. I led the frontend and the interactive 3D globe.</p></div>
         <div class="item" data-fly="right"><span class="when">Next</span><h3>Cisco CCNA 200-301</h3><p>Then a networking internship in the UAE.</p></div>
       </div>
     </div>
@@ -235,6 +240,6 @@
 <script src="js/vendor/gsap.min.js"></script>
 <script src="js/vendor/ScrollTrigger.min.js"></script>
 <script src="js/vendor/lenis.min.js"></script>
-<script src="js/main.js?v=14"></script>
+<script src="js/main.js?v=15"></script>
 </body>
 </html>
