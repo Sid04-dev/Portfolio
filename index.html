@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="css/style.css?v=16">
+<link rel="stylesheet" href="css/style.css?v=17">
 </head>
 <body>
 <canvas id="rain" aria-hidden="true"></canvas>
@@ -173,7 +173,7 @@
         <div class="item" data-fly="right"><span class="when">June 2026</span><h3>IBM SkillsBuild: Cybersecurity Fundamentals</h3><p>Alongside IBM courses in AI fundamentals, machine-learning workflows and AI ethics.</p></div>
         <div class="item" data-fly="right"><span class="when">September 2026</span><h3>BSc (Hons) Computer Science, University of Stirling</h3><p>Direct entry to third year at the Ras Al Khaimah campus. Modules include HCI, software engineering and machine learning.</p></div>
         <div class="item" data-fly="right"><span class="when">Autumn 2026</span><h3>Team lead, Software Engineering 1</h3><p>Running a five-person team: repository, task board and code review.</p></div>
-        <div class="item" data-fly="right"><span class="when">November 2026 · Hackathon</span><h3>NASA Space Apps Challenge 2026</h3><p>Built TerraTrace with team The Hotspot, five Stirling students, for the Abu Dhabi local event, tackling the "Be an Earth System Trend Detective" challenge. I led the frontend and the interactive 3D globe.</p></div>
+        <div class="item has-cert" data-fly="right" data-cert><span class="when">November 2026 · Hackathon</span><h3>NASA Space Apps Challenge 2026</h3><p>Built TerraTrace with team The Hotspot, five Stirling students, for the Abu Dhabi local event, tackling the "Be an Earth System Trend Detective" challenge. I led the frontend and the interactive 3D globe. Awarded the Galactic Problem Solver certificate.</p><button class="cert-btn" type="button" data-cert><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg>View certificate</button></div>
         <div class="item" data-fly="right"><span class="when">Next</span><h3>Cisco CCNA 200-301</h3><p>Then a networking internship in the UAE.</p></div>
       </div>
     </div>
@@ -195,6 +195,8 @@
     </div>
   </section>
 </main>
+<div class="cert-modal" id="certModal" role="dialog" aria-modal="true" aria-label="NASA Space Apps Challenge 2026 certificate" aria-hidden="true"><figure><button class="cert-close" type="button" aria-label="Close certificate">×</button><img src="assets/nasa-2026-certificate.jpg" alt="NASA Space Apps Challenge 2026 Galactic Problem Solver certificate awarded to Sidharth Gopakumar, November 14–15, 2026" loading="lazy"><figcaption><span>NASA Space Apps Challenge 2026 · Galactic Problem Solver</span><span>Press Esc to close</span></figcaption></figure></div>
+
 
   <footer id="site-footer">
     <div class="ft-led" aria-hidden="true"><span></span></div>
@@ -240,6 +242,6 @@
 <script src="js/vendor/gsap.min.js"></script>
 <script src="js/vendor/ScrollTrigger.min.js"></script>
 <script src="js/vendor/lenis.min.js"></script>
-<script src="js/main.js?v=16"></script>
+<script src="js/main.js?v=17"></script>
 </body>
 </html>
